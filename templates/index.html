@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="static/favicon.ico" />
 
     <title>derivatived | Linkedin Alerts</title>
 
@@ -14,58 +14,64 @@
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <style>
-      #message { 
+      .error {
         color: red;
+      }
+      .success {
+        color: green;
       }
     </style>
   </head>
   <body>
     <div class="wrapper">
       <header>
-      <h1>LinkedIn Alerts</h1>
-      <p>Get e-mail alerts for people potentially looking for jobs on LinkedIn</p>
-
+        <h1>LinkedIn Alerts</h1>
+        <p>Get e-mail alerts for people potentially looking for jobs on LinkedIn</p>
       </header>
+
       <section>
-      <h3>Alerts in your inbox:</h3>
-      <p>We notify you of job-seeking candidates the same way LinkedIn tells you that your connections joined a new company.</p>
+        <h3>Alerts in your inbox:</h3>
+        <p>We notify you of job-seeking candidates the same way LinkedIn tells you that your connections joined a new company.</p>
 
-      <h3>Non-marketed active candidates:</h3>
-      <p>Many technical candidates start looking for jobs long before they ever publicly indicate their search.</p>
+        <h3>Non-marketed active candidates:</h3>
+        <p>Many technical candidates start looking for jobs long before they ever publicly indicate their search.</p>
 
-      <h3>First to target high-tech candidates:</h3>
-      <p>Be the first to find out the candidates that are seeking new opportunities before the others!</p>
+        <h3>First to target high-tech candidates:</h3>
+        <p>Be the first to find out the candidates that are seeking new opportunities before the others!</p>
 
-      <form id="myForm" class="form-inline" method="post">
-        <label>Enter your email:</label> <input class="input-medium search-query" type="text" />
-        <button type="submit" class="btn">Send</button>
-        <p id="message"></p>
-      </form>
-
+        <form id="myForm" class="cmxform" action="/email" method="post">
+            <label for="cname">Enter your email:</label>
+            <input class="required email" minlength="6" name="email" id="cemail" type="text" />
+            <input type="submit" />
+            <p id="message"></p>
+        </form>
+        <noscript><p class="error">Please run Javascript to submit this form</p></noscript>
       </section>
+
       <footer>
-      <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
     </div>
 
-    <script src="javascripts/scale.fix.js"></script>
+    <script src="static/javascripts/scale.fix.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
     <script src="http://malsup.github.com/jquery.form.js"></script> 
+    <script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
     <script> 
       var options = {
         target: "#message", 
-        url: 'http://localhost:5000/email',
         error: function() {
-          $('#message').text("Please provide a valid email."); 
+          $('#message').attr('class', 'error');
         },
         success: function() { 
-          $('#message').text("Thank you for your email!"); 
+          $('#message').attr('class', 'success');
         }
       }
       // wait for the DOM to be loaded 
       $(document).ready(function() { 
           // bind 'myForm' and provide a simple callback function 
-          $('#myForm').ajaxForm(options); 
+          $("#myForm").validate();
+          $("#myForm").ajaxForm(options);
       }); 
     </script> 
   </body>

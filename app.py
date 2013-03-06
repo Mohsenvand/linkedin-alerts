@@ -1,14 +1,11 @@
 import os
+import re
 
-from flask import Flask, jsonify, request, render_template
-from wtforms import Form, TextField, validators
+from flask import Flask, request, render_template
+#from wtforms import Form, TextField, validators
 
 app = Flask(__name__)
-
-
-class RegistrationForm(Form):
-    email = TextField('Email Address',
-            validators.Email(message='Not a valid Email'))
+EMAIL_RE = re.compile('[^@]+@[^@]+\.[^@]+')
 
 
 @app.route('/')
@@ -18,12 +15,12 @@ def hello():
 
 @app.route('/email',  methods=['POST'])
 def save_email():
-    form = RegistrationForm(request.form)
-    if request.method == 'POST' and form.validate():
-        user = User(form.email.data)
-        db_session.add(user)
-        return jsonify(success='Thanks for your email')
-    return jsonify(error='Invalid Email')
+    if request.method == 'POST':
+        email = request.form['email']
+        print email
+        if not EMAIL_RE.match(email):
+            return "Please provide a valid email."
+        return "Thanks for your e-mail!"
 
 
 if __name__ == '__main__':
