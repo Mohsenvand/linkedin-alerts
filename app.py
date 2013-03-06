@@ -1,8 +1,9 @@
 from __future__ import with_statement
 import os
 from sqlite3 import dbapi2 as sqlite3
-from flask import Flask, jsonify, request, render_template,session, url_for, abort, \
-     render_template, flash, _app_ctx_stack
+from flask import Flask, jsonify, request, render_template, session, url_for, abort, \
+     flash, _app_ctx_stack
+from flask.ext.basicauth import BasicAuth
 from wtforms import Form, TextField, validators
 from contextlib import closing
 
@@ -14,6 +15,11 @@ DEBUG = True
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
+
+app.config['BASIC_AUTH_USERNAME'] = os.environ.get('AUTH_USERNAME', None)
+app.config['BASIC_AUTH_PASSWORD'] = os.environ.get('AUTH_PASSWORD', None)
+
+basic_auth = BasicAuth(app)
 
 def connect_db():
     return sqlite3.connect(app.config['DATABASE'])
@@ -61,6 +67,7 @@ def save_email():
 
 
 @app.route('/_get_emails',  methods=['GET'])
+@basic_auth.required
 def _get_emails():
     db = get_db()
     c = db.cursor()
