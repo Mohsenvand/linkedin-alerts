@@ -7,7 +7,7 @@ from wtforms import Form, TextField, validators
 from contextlib import closing
 
 
-DATABASE = "/tmp/flaskr.db"
+DATABASE = "./flaskr.db"
 SECRET_KEY = 'development key'
 DEBUG = True
 
@@ -58,6 +58,15 @@ def save_email():
         db.commit()
         return "Thanks for your e-mail."
     return "Please provide a valid Email."
+
+
+@app.route('/_get_emails',  methods=['GET'])
+def _get_emails():
+    db = get_db()
+    c = db.cursor()
+    c.execute('SELECT * FROM entries;')
+    row = c.fetchall()
+    return '<br />'.join([x[1] for x in row])
 
 
 if __name__ == '__main__':
