@@ -1,5 +1,4 @@
-drop table if exists entries;
-create table entries (
-  id integer primary key autoincrement,
-  email text not null unique on conflict ignore
+CREATE TABLE IF NOT EXISTS entries (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  email TEXT NOT NULL UNIQUE ON CONFLICT IGNORE
 );
