@@ -9,7 +9,6 @@ DATABASE = "/tmp/flaskr.db"
 app = Flask(__name__)
 
 
-
 def init_db():
     with app.app_contect():
         db = get_db()
@@ -51,8 +50,8 @@ def save_email():
         db.execute('insert into entries (email) values (?)',
                      [request.form['email']])
         db.commit()
-        return jsonify(success='Thanks for your email')
-    return jsonify(error='Invalid Email')
+        return "Please provide a valid email."
+    return "Thanks for your e-mail!"
 
 
 if __name__ == '__main__':
