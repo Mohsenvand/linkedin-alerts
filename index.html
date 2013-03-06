@@ -7,8 +7,6 @@
 
     <title>derivatived | Linkedin Alerts</title>
 
-    <link rel="stylesheet" href="static/stylesheets/styles.css">
-    <link rel="stylesheet" href="static/stylesheets/pygment_trac.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -20,6 +18,12 @@
       .success {
         color: green;
       }
+      .report {
+        width: 250px; 
+        height: auto;
+        color: black;
+      }
+
     </style>
   </head>
   <body>
@@ -39,13 +43,19 @@
         <h3>First to target high-tech candidates:</h3>
         <p>Be the first to find out the candidates that are seeking new opportunities before the others!</p>
 
-        <form id="myForm" class="cmxform" action="/email" method="post">
+        <h3>Sample Trigger Report: </h3>
+        <p>Get Trigger Reports e-mailed to you immediately.</p>
+        <a class="lightbox" href="static/images/linkedin-email.png">
+          <img class="report" style="border-style:solid; border-width:1px;" src="static/images/linkedin-email.png" />
+        </a>
+
+        <form id="myForm" class="cmxform" action="http://emailbin.derivatived.com/signup" method="post">
             <label for="cname">Enter your email:</label>
             <input class="required email" minlength="6" name="email" id="cemail" type="text" />
             <input type="submit" />
             <p id="message"></p>
         </form>
-        <noscript><p class="error">Please run Javascript to submit this form</p></noscript>
+
       </section>
 
       <footer>
@@ -57,8 +67,13 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
     <script src="http://malsup.github.com/jquery.form.js"></script> 
     <script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/lightbox/0.5/js/jquery.lightbox-0.5.js"></script>
+
+    <link rel="stylesheet" href="static/stylesheets/styles.css">
+    <link rel="stylesheet" href="static/stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/lightbox/0.5/css/jquery.lightbox-0.5.css">
     <script> 
-      var options = {
+      var ajax_form_options = {
         target: "#message", 
         error: function() {
           $('#message').attr('class', 'error');
@@ -67,11 +82,19 @@
           $('#message').attr('class', 'success');
         }
       }
+
+      var lightbox_options = {
+        imageLoading: '//cdn.jsdelivr.net/lightbox/0.5/images/lightbox-ico-loading.gif',
+        imageBtnClose: '//cdn.jsdelivr.net/lightbox/0.5/images/lightbox-btn-close.gif',
+        imageBtnPrev: '//cdn.jsdelivr.net/lightbox/0.5/images/lightbox-btn-prev.gif',
+        imageBtnNext: '//cdn.jsdelivr.net/lightbox/0.5/images/lightbox-btn-next.gif',
+      }
       // wait for the DOM to be loaded 
       $(document).ready(function() { 
           // bind 'myForm' and provide a simple callback function 
           $("#myForm").validate();
-          $("#myForm").ajaxForm(options);
+          $("#myForm").ajaxForm(ajax_form_options);
+          $('.lightbox').lightBox(lightbox_options);
       }); 
     </script> 
   </body>
