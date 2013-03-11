@@ -26,12 +26,20 @@
         color: green;
       }
       .report {
-        width: 250px; 
+        width: 400px; 
         height: auto;
         color: black;
       }
       .pricing {
         padding-top: 20px;
+      }
+
+      .contact {
+        color: black;
+      }
+      .contact a {
+        color: blue;
+        text-decoration: underline;
       }
 
     </style>
@@ -41,6 +49,15 @@
       <header>
         <h1>LinkedIn Alerts</h1>
         <p>Get e-mail alerts for people potentially looking for jobs on LinkedIn</p>
+        <h4 class="share">Share:</h4>
+        <span class='st_linkedin_large' displayText='LinkedIn'></span>
+        <span class='st_email_large' displayText='Email'></span>
+        <span class='st_twitter_large' displayText='Tweet'></span>
+        <span class='st_facebook_large' displayText='Facebook'></span>
+        <h4 class="contact">
+          <strong>Contact us with any questions:</strong> 
+          <a href="mailto:info@derivatived.com">info@derivatived.com</a>
+        </h4>
         <div class="pricing">
           <a href="pricing.html?b=1" class="btn btn-primary btn-large">
             Checkout pricing</span>
@@ -49,23 +66,24 @@
       </header>
 
       <section>
-        <h3>Alerts in your inbox:</h3>
-        <p>We notify you of job-seeking candidates the same way LinkedIn tells you that your connections joined a new company.</p>
-
-        <h3>Non-marketed active candidates:</h3>
-        <p>Many technical candidates start looking for jobs long before they ever publicly indicate their search. Be the first to contact them!</p>
-
-        <h3>Sample E-mail Report: </h3>
+        <h3>E-mail Reports:</h3>
         <p>Get Reports e-mailed to you immediately.</p>
         <a class="lightbox" href="./images/linkedin-email.png">
           <img class="report" style="border-style:solid; border-width:1px;" src="./images/linkedin-email.png" />
         </a>
+
+        <h3>Alerts in your inbox:</h3>
+        <p>We notify you of job-seeking candidates the same way LinkedIn tells you that your connections joined a new company.</p>
+
+        <h3>Non-marketed active candidates:</h3>
+        <p>Many technical candidates start looking for jobs long before they ever publicly indicate their search. Be the first to connect!</p>
 
         <div class="pricing">
           <a href="pricing.html?b=2" class="btn btn-primary btn-large">
             Checkout pricing</span>
           </a>
         </div>
+
 
       </section>
 
@@ -77,7 +95,8 @@
   <script src="./javascripts/scale.fix.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
   <script type="text/javascript" src="http://cdn.jsdelivr.net/lightbox/0.5/js/jquery.lightbox-0.5.js"></script>
-
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "ur-f929fc91-1632-daec-7815-8bb57cb078bd", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
   <script> 
     var lightbox_options = {
       imageLoading: 'http://cdn.jsdelivr.net/lightbox/0.5/images/lightbox-ico-loading.gif',
