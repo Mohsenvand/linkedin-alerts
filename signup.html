@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>derivatived | LinkedIn Alerts Signup</title>
+    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
+
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <style>
+      .error {
+        color: red;
+      }
+      .success {
+        color: green;
+      }
+      .report {
+        width: 250px; 
+        height: auto;
+        color: black;
+      }
+      .pricing {
+        padding-top: 20px;
+      }
+
+      .message {
+        padding-top: 12%;
+        width: 600px;
+      }
+
+      .promise li {
+        padding-bottom: 5px;
+      }
+
+      input[type="text"] {
+        height: 35px;
+        width: auto;
+        line-height: 35px;
+        font-size: 35px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="offset3 message">
+        <h1>LinkedIn Alert E-mails</h1>
+        <h2>Rolling Entry</h2>
+        <ul class="unstyled promise">
+          <li>We're inviting people in on a rolling basis. Right now, we've let in as many people
+            as we can happily support. Though we love your interest and will alert you when we
+            are ready to serve you best! </li>
+
+          <li>Hope to see you soon!</li>
+        </p>
+        <form id="myForm" class="cmxform form-inline" action="http://emailbin.derivatived.com/signup" method="post">
+            <h4 for="cname">Enter your email:</h4>
+            <input class="required email" minlength="6" placeholder="example@domain.com" name="email" id="cemail" type="text" />
+            <button type="submit" class="btn btn-primary btn-large">Submit!</button>
+            <p id="message"></p>
+        </form>
+      </div>
+    </div>
+  </body>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
+  <script src="http://malsup.github.com/jquery.form.js"></script> 
+  <script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
+  <script> 
+    var ajax_form_options = {
+      target: "#message", 
+      error: function() {
+        $('#message').attr('class', 'error');
+      },
+      success: function() { 
+        $('#message').attr('class', 'success');
+      }
+    }
+
+    // wait for the DOM to be loaded 
+    $(document).ready(function() { 
+        $("#myForm").ajaxForm(ajax_form_options);
+        $("#myForm").validate();
+    }); 
+  </script> 
+</html>
