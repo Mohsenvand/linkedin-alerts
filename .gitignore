@@ -36,3 +36,5 @@ nosetests.xml
 
 .ropeproject/
 *.db
+
+*.xml
